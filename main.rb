@@ -42,8 +42,33 @@ p "Size = #{list.size}"
 list.remove_at(0)
 p "list.remove_at(0)"
 p "list.to_s = #{list.to_s}"
+
 list.remove_at(3)
 p "list.remove_at(3)"
 p "list.to_s = #{list.to_s}"
 
 p "Size = #{list.size}"
+
+list.remove_at(0)
+p "list.remove_at(0)"
+p "list.to_s = #{list.to_s}"
+
+list.remove_at(0)
+p "list.remove_at(0)"
+p "list.to_s = #{list.to_s}"
+
+list.remove_at(0)
+p "list.remove_at(0)"
+p "list.to_s = #{list.to_s}"
+
+list.remove_at(0)
+p "list.remove_at(0)"
+p "list.to_s = #{list.to_s}"
+
+list.remove_at(0)
+p "list.remove_at(0)"
+p "list.to_s = #{list.to_s}"
+
+list.remove_at(0)
+p "list.remove_at(0)"
+p "list.to_s = #{list.to_s}"
