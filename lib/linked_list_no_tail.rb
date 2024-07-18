@@ -36,7 +36,6 @@ class LinkedList
     return Node.new if index >= size
     current = head
     (0...index).step do |i|
-      return nil if current.next_node == nil
       current = current.next_node
     end
     current
@@ -47,9 +46,9 @@ class LinkedList
     while current.next_node.next_node != nil
       current = current.next_node
     end
-    tail_value = current.next_node
-    tail.next_node = nil
-    tail_value
+    popped_node = current.next_node
+    current.next_node = nil
+    popped_node
   end
 
   def contains?(value)
