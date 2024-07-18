@@ -30,7 +30,7 @@ class LinkedList
     end
     count
   end
-.
+
   def at(index)
     current = head
     (0...index).step do |i|
