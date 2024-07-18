@@ -28,8 +28,12 @@ class LinkedList
     @size
   end
 
-  def at(index) #return node, 
-    return Node.new if index >= size || index<0
+  def at(index) #return node,
+    if index<0
+      return Node.new if -index > @size
+      return at(@size + index)
+    end
+    return Node.new if index >= size
     current = head
     (0...index).step do |i|
       return nil if current.next_node == nil
@@ -43,7 +47,6 @@ class LinkedList
     while current.next_node.next_node != nil
       current = current.next_node
     end
-    self.tail = current
     tail_value = current.next_node
     tail.next_node = nil
     tail_value
