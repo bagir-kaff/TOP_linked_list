@@ -2,6 +2,7 @@ class LinkedList
   attr_accessor :head
   def initialize
     @head = nil
+    @size = 0
   end
 
   def append(value)
@@ -14,24 +15,21 @@ class LinkedList
       end
       current.next_node = value
     end
+    @size += 1
   end
 
   def prepend(value)
     value.next_node = head
     self.head = value
+    @size += 1
   end
 
   def size
-    current = head
-    count = 0
-    while current != nil
-      count += 1
-      current = current.next_node
-    end
-    count
+    @size
   end
 
-  def at(index)
+  def at(index) #return node, 
+    return Node.new if index >= size || index<0
     current = head
     (0...index).step do |i|
       return nil if current.next_node == nil
