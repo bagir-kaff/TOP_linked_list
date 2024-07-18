@@ -23,14 +23,14 @@ class LinkedList
 
   def size
     current = head
-    count = 1
-    while current.next_node != nil
+    count = 0
+    while current != nil
       count += 1
       current = current.next_node
     end
     count
   end
-
+.
   def at(index)
     current = head
     (0...index).step do |i|
