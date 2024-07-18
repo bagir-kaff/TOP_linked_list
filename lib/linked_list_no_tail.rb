@@ -35,9 +35,7 @@ class LinkedList
     end
     return Node.new if index >= size
     current = head
-    (0...index).step do |i|
-      current = current.next_node
-    end
+    (0...index).step {|i| current = current.next_node }
     current
   end
 
@@ -64,9 +62,16 @@ class LinkedList
     current = head
     count = 0
     while current != nil
-      # p current
       return count if current.value == value
       count += 1
+      current = current.next_node
+    end
+  end
+
+  def find_node(value)
+    current = head
+    while current != nil
+      return current if current.value == value
       current = current.next_node
     end
   end
