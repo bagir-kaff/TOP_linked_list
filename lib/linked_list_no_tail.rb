@@ -19,7 +19,6 @@ class LinkedList
   def prepend(value)
     value.next_node = head
     self.head = value
-    self.tail = value if tail == nil
   end
 
   def size
