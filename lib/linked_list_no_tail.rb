@@ -88,32 +88,9 @@ class LinkedListNoTail
   end
 
   def insert_at(value,index)
-    if index==0
-      value.next_node = head
-      @size+=1
-      self.head = value
-    elsif index>=@size
-      append(value)
-    elsif index<0
-      insert_at(-index + @size)
-    else
-      value.next_node = at(index)
-      at(index-1).next_node = value
-    end
   end
 
-  def remove_at(index) #return w
-    if index==0
-      return nil if self.head == nil
-      self.head = at(index+1)
-    elsif index>=@size
-      return nil
-    elsif index<0
-      remove_at(-index + @size)
-    else
-      @size-=1
-      at(index-1).next_node = at(index+1)
-    end
+  def remove_at(index) #return removed node
   end
 
 end
