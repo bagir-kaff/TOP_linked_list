@@ -1,4 +1,4 @@
-class LinkedList
+class LinkedListNoTail
   attr_accessor :head
   def initialize
     @head = nil
@@ -46,6 +46,7 @@ class LinkedList
     end
     popped_node = current.next_node
     current.next_node = nil
+    @size-=1
     popped_node
   end
 
@@ -83,28 +84,35 @@ class LinkedList
       str << "#{current.value} -> "
       current = current.next_node
     end
-    str<<'nil'
+    return str<<'nil'
   end
 
   def insert_at(value,index)
     if index==0
       value.next_node = head
+      @size+=1
       self.head = value
-    elsif index>=size
+    elsif index>=@size
       append(value)
+    elsif index<0
+      insert_at(-index + @size)
     else
       value.next_node = at(index)
       at(index-1).next_node = value
     end
-
   end
 
-  def remove_at(index)
+  def remove_at(index) #return w
     if index==0
       return nil if self.head == nil
       self.head = at(index+1)
-    elsif index<size
-      at(index-1).next_node = at(index+1)
+    elsif index>=@size
+      return nil
+    elsif index<0
+      remove_at(-index + @size)
+    else
+      @size-=1
+      at(index-1).next_node = at(index+1
     end
   end
 
