@@ -112,7 +112,7 @@ class LinkedListNoTail
       remove_at(-index + @size)
     else
       @size-=1
-      at(index-1).next_node = at(index+1
+      at(index-1).next_node = at(index+1)
     end
   end
 
