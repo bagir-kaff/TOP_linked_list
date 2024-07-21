@@ -1,5 +1,7 @@
-class LinkedListNoTail
+
+class LinkedList
   attr_accessor :head
+  attr_reader :size
   def initialize
     @head = nil
     @size = 0
@@ -7,20 +9,21 @@ class LinkedListNoTail
 
   def append(value)
     if head==nil
-      self.head = value
+      self.head = Node.new(value)
     else
       current = head
       while current.next_node != nil
         current = current.next_node
       end
-      current.next_node = value
+      current.next_node = Node.new(value)
     end
     @size += 1
   end
 
   def prepend(value)
-    value.next_node = head
-    self.head = value
+    input_node = Node.new(value)
+    input_node.next_node = head
+    self.head = input_node
     @size += 1
   end
 
@@ -30,24 +33,20 @@ class LinkedListNoTail
 
   def at(index) #return node,
     if index<0
-      return Node.new if -index > @size
+      return nil if -index > @size
       return at(@size + index)
     end
-    return Node.new if index >= size
+    return nil if index >= size
     current = head
-    (0...index).step {|i| current = current.next_node }
-    current
+    (0...index).step { |i| current = current.next_node }
+    return current
   end
 
   def pop
-    current = head
-    while current.next_node.next_node != nil
-      current = current.next_node
-    end
-    popped_node = current.next_node
-    current.next_node = nil
-    @size-=1
-    popped_node
+    removed_node = at(@size-1)
+    at(@size-2).next_node = nil
+    @size
+    return removed_node
   end
 
   def contains?(value)
@@ -67,6 +66,7 @@ class LinkedListNoTail
       count += 1
       current = current.next_node
     end
+    return nil
   end
 
   def find_node(value)
@@ -75,6 +75,7 @@ class LinkedListNoTail
       return current if current.value == value
       current = current.next_node
     end
+    return Node.new
   end
 
   def to_s
@@ -82,15 +83,48 @@ class LinkedListNoTail
     current = self.head
     while current != nil
       str << "#{current.value} -> "
+      break if current.next_node == nil
       current = current.next_node
     end
     return str<<'nil'
   end
 
   def insert_at(value,index)
+    input_node = Node.new(value)
+    if index == 0
+      input_node.next_node = @head
+      @head = input_node
+    elsif index < 0
+      return if -index > @size
+      index = index+@size+1
+      input_node.next_node = at(index)
+      at(index-1).next_node = input_node
+    elsif index > @size
+      append(value)
+      return
+    else
+      input_node.next_node = at(index)
+      at(index-1).next_node = input_node
+    end
+    @size+=1
   end
 
   def remove_at(index) #return removed node
+    removed_node = nil
+    if index == 0
+      removed_node = @head
+      @head = @head.next_node
+    elsif index < 0
+      return nil if -index>@size
+      return remove_at(index+@size) #not easy to read
+    elsif index > @size
+      return nil
+    else
+      removed_node = at(index)
+      at(index-1).next_node = at(index+1)
+    end
+    @size-=1
+    removed_node
   end
 
 end
