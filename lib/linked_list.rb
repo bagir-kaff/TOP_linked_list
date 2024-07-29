@@ -31,7 +31,7 @@ class LinkedList
     @size
   end
 
-  def at(index) #return node,
+  def at(index) #returns node, returns nil if the input is out of reach
     if index<0
       return nil if -index > @size
       return at(@size + index)
@@ -58,7 +58,7 @@ class LinkedList
     false
   end
 
-  def find(value)
+  def find(value) #returns index, returns nil if the input is out of reach
     current = head
     count = 0
     while current != nil
@@ -69,13 +69,13 @@ class LinkedList
     return nil
   end
 
-  def find_node(value)
+  def find_node(value)  #returns node, returns nil if the input is out of reach
     current = head
     while current != nil
       return current if current.value == value
       current = current.next_node
     end
-    return Node.new
+    return nil
   end
 
   def to_s
@@ -109,8 +109,8 @@ class LinkedList
     @size+=1
   end
 
-  def remove_at(index) #return removed node
-    removed_node = nil
+  def remove_at(index)
+    return nil if size == 0
     if index == 0
       removed_node = @head
       @head = @head.next_node
@@ -124,7 +124,6 @@ class LinkedList
       at(index-1).next_node = at(index+1)
     end
     @size-=1
-    removed_node
   end
 
 end
