@@ -152,12 +152,13 @@ end
 def test_remove_at(list)
   puts
   puts "list = #{list}"
+  puts "list size = #{list.size}"
   puts "press enter to start #remove_at"
   gets
   indexes = [3,1,-1,99,-99,0]
   indexes.each do |index|
-    puts "list.remove_at(#{index})"
-    list.remove_at(index)
+    puts "list.remove_at(#{index}) = #{list.remove_at(index)}"
+    puts "list size = #{list.size}"
     puts list
     gets
   end
@@ -174,4 +175,4 @@ do_append(list)
 # test_find_node(list)
 # test_at(list)
 # test_insert_at(list)
-# test_remove_at(list)
+test_remove_at(list)
