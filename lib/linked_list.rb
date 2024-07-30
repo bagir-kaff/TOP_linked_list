@@ -111,12 +111,13 @@ class LinkedList
 
   def remove_at(index)
     return nil if size == 0
+    removed_node = nil  #for future use
     if index == 0
       removed_node = @head
       @head = @head.next_node
     elsif index < 0
       return nil if -index>@size
-      return remove_at(index+@size) #not easy to read
+      return remove_at(index+@size) #not easy to read , but good enough
     elsif index > @size
       return nil
     else
@@ -124,6 +125,7 @@ class LinkedList
       at(index-1).next_node = at(index+1)
     end
     @size-=1
+    return removed_node.value 
   end
 
 end
